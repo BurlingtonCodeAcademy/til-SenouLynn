@@ -12,17 +12,20 @@ app.listen(port, () => {
 
 // //Static Directory
 // const staticDir = path.resolve("./client/public");
+
 //USE THIS WHEN DEPLOYING
 const staticDir = path.resolve("./client/build");
+
 const AtlasURL = `mongodb+srv://${process.env.ATLASUSER}:${process.env.ATLASPASS}@cluster0.3sgwu.mongodb.net/test`
 
 app.use(express.static(staticDir));
 
 //Bring in Mongoose dependencies
 const mongoose = require("mongoose");
+
 //Connect to specific database called 'til'
 // "mongodb://localhost:27017/til"
-mongoose.connect(, {
+mongoose.connect(AtlasURL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
