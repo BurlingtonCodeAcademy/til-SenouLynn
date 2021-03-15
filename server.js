@@ -16,8 +16,11 @@ app.listen(port, () => {
 //USE THIS WHEN DEPLOYING
 const staticDir = path.resolve("./client/build");
 
-// const AtlasURL = `mongodb+srv://${process.env.ATLASUSER}:${process.env.ATLASPASS}@cluster0.3sgwu.mongodb.net/test`
-const AtlasURL = `mongodb+srv://senoulynn:${process.env.ATLASPASS}@cluster0.3sgwu.mongodb.net/til?retryWrites=true&w=majority`
+//Connection through compass
+const AtlasURL = `mongodb+srv://${process.env.ATLASUSER}:${process.env.ATLASPASS}@cluster0.3sgwu.mongodb.net/test`
+
+//Connection through APP
+// const AtlasURL = `mongodb+srv://senoulynn:${process.env.ATLASPASS}@cluster0.3sgwu.mongodb.net/til?retryWrites=true&w=majority`
 
 
 app.use(express.static(staticDir));
