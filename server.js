@@ -10,10 +10,10 @@ app.listen(port, () => {
   console.log("TIL listening on port: ", port);
 });
 
-//Static Directory
-const staticDir = path.resolve("./client/public");
+// //Static Directory
+// const staticDir = path.resolve("./client/public");
 //USE THIS WHEN DEPLOYING
-// const staticDir = path.resolve("./client/build");
+const staticDir = path.resolve("./client/build");
 const AtlasURL = `mongodb+srv://${process.env.ATLASUSER}:${process.env.ATLASPASS}@cluster0.3sgwu.mongodb.net/test`
 
 app.use(express.static(staticDir));
@@ -22,7 +22,7 @@ app.use(express.static(staticDir));
 const mongoose = require("mongoose");
 //Connect to specific database called 'til'
 // "mongodb://localhost:27017/til"
-mongoose.connect(AtlasURL, {
+mongoose.connect(, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
