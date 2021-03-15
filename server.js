@@ -16,11 +16,9 @@ app.listen(port, () => {
 //USE THIS WHEN DEPLOYING
 const staticDir = path.resolve("./client/build");
 
-//Connection through compass
-// const AtlasURL = `mongodb+srv://${process.env.ATLASUSER}:${process.env.ATLASPASS}@cluster0.3sgwu.mongodb.net/test`
-
 //Connection through APP
-const AtlasURL = `mongodb+srv://senoulynn:${ATLASPASS}@cluster0.3sgwu.mongodb.net/til?retryWrites=true&w=majority`
+// const AtlasURL = `mongodb+srv://senoulynn:${ATLASPASS}@cluster0.3sgwu.mongodb.net/til?retryWrites=true&w=majority`
+const MONGODB;
 
 
 app.use(express.static(staticDir));
@@ -30,7 +28,7 @@ const mongoose = require("mongoose");
 
 //Connect to specific database called 'til'
 // "mongodb://localhost:27017/til"
-mongoose.connect(AtlasURL, {
+mongoose.connect(MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
