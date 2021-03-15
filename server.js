@@ -18,7 +18,7 @@ const staticDir = path.resolve("./client/build");
 
 //Connection through APP
 // const AtlasURL = `mongodb+srv://senoulynn:${ATLASPASS}@cluster0.3sgwu.mongodb.net/til?retryWrites=true&w=majority`
-const MONGODB;
+
 
 
 app.use(express.static(staticDir));
@@ -28,7 +28,7 @@ const mongoose = require("mongoose");
 
 //Connect to specific database called 'til'
 // "mongodb://localhost:27017/til"
-mongoose.connect(MONGODB, {
+mongoose.connect(process.env.MONGODB, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
