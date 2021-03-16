@@ -10,22 +10,14 @@ app.listen(port, () => {
   console.log("TIL listening on port: ", port);
 });
 
-// //Static Directory
-// const staticDir = path.resolve("./client/public");
-
-//USE THIS WHEN DEPLOYING
-const staticDir = path.resolve("./client/build");
-
-let herokuConnectVar = process.env.MONGODB
-
+//Static Directory
+const staticDir = path.resolve("./client/public");
 app.use(express.static(staticDir));
 
 //Bring in Mongoose dependencies
 const mongoose = require("mongoose");
-
 //Connect to specific database called 'til'
-// "mongodb://localhost:27017/til"
-mongoose.connect(herokuConnectVar, {
+mongoose.connect("mongodb://localhost:27017/til", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -52,14 +44,14 @@ const postModel = mongoose.model("posts", postSchema);
 
 //<----- Reading database => Fetch all for /facts page ----->//
 
-app.get("/fact", async (req, res) => {
+app.get("/facts", async (req, res) => {
   const allPosts = await postModel.find({});
   res.send(allPosts);
 });
 
 //<----- Reading database and finding single post by id ----->//
 
-app.get("/fact/:objectId", async (req, res) => {
+app.get("/facts/:objectId", async (req, res) => {
   let postId = req.params.objectId;
   console.log("REF: postId ", postId);
   const singlePost = await postModel.findById(postId);
@@ -117,7 +109,7 @@ app.post("/form-update", async (req, res) => {
         return res.status(500).send({ error: err });
       } else {
         console.log("Successful Update");
-        return res.redirect(`/fact`);
+        return res.redirect(`/facts`);
       }
     }
   );
@@ -129,7 +121,7 @@ app.post("/post-delete", async (req, res) => {
   let docId = new ObjectId(req.body.postId);
 
   await postModel.deleteOne({ _id: docId });
-  return res.redirect(`/fact`);
+  return res.redirect(`/facts`);
 });
 
 //<----- Search Bar ----->//
