@@ -11,7 +11,7 @@ app.listen(port, () => {
 });
 
 // //Static Directory
-const staticDir = path.resolve("./client/public");
+// const staticDir = path.resolve("./client/public");
 
 //USE THIS WHEN DEPLOYING
 const staticDir = path.resolve("./client/build");
