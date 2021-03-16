@@ -10,14 +10,25 @@ app.listen(port, () => {
   console.log("TIL listening on port: ", port);
 });
 
-//Static Directory
-const staticDir = path.resolve("./client/public");
+// //Static Directory
+// const staticDir = path.resolve("./client/public");
+
+//USE THIS WHEN DEPLOYING
+const staticDir = path.resolve("./client/build");
+
+//Connection through APP
+// const AtlasURL = `mongodb+srv://senoulynn:${ATLASPASS}@cluster0.3sgwu.mongodb.net/til?retryWrites=true&w=majority`
+
+let herokuConnectVar = process.env.MONGODB
+
 app.use(express.static(staticDir));
 
 //Bring in Mongoose dependencies
 const mongoose = require("mongoose");
+
 //Connect to specific database called 'til'
-mongoose.connect("mongodb://localhost:27017/til", {
+// "mongodb://localhost:27017/til"
+mongoose.connect(herokuConnectVar, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
