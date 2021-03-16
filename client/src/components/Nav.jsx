@@ -10,8 +10,8 @@ export default function Nav() {
             </div>
             <nav >
                 <Link className="nav-link" to="/">Home</Link>
-                <Link className="nav-link" to="/facts">Facts</Link>
-                <Link className="nav-link" to="/searchReturn">Search</Link>
+                <Link className="nav-link" to="/fact">Facts</Link>
+                <Link className="nav-link" to="/searchPage">Search</Link>
             </nav>
 
         </div>

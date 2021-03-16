@@ -15,9 +15,9 @@ function App() {
             <Nav />
             <Switch>
               <Route exact path="/" component={Home} />
-              <Route exact path="/facts" component={Posts} />
-              <Route path="/facts/:id" component={Post} />
-              <Route path="/searchReturn" component={SearchRes} />
+              <Route exact path="/fact" component={Posts} />
+              <Route path="/fact/:id" component={Post} />
+              <Route path="/searchPage" component={SearchRes} />
             </Switch>
           </BrowserRouter>
         </div>

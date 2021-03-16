@@ -15,10 +15,6 @@ app.listen(port, () => {
 
 //USE THIS WHEN DEPLOYING
 const staticDir = path.resolve("./client/build");
-
-//Connection through APP
-// const AtlasURL = `mongodb+srv://senoulynn:${ATLASPASS}@cluster0.3sgwu.mongodb.net/til?retryWrites=true&w=majority`
-
 let herokuConnectVar = process.env.MONGODB
 
 app.use(express.static(staticDir));
@@ -27,8 +23,9 @@ app.use(express.static(staticDir));
 const mongoose = require("mongoose");
 
 //Connect to specific database called 'til'
-// "mongodb://localhost:27017/til"
-mongoose.connect(herokuConnectVar, {
+//"mongodb://localhost:27017/til"
+//
+mongoose.connect(herokuConnectVar , {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -120,7 +117,7 @@ app.post("/form-update", async (req, res) => {
         return res.status(500).send({ error: err });
       } else {
         console.log("Successful Update");
-        return res.redirect(`/facts`);
+        return res.redirect(`/fact`);
       }
     }
   );
@@ -132,7 +129,7 @@ app.post("/post-delete", async (req, res) => {
   let docId = new ObjectId(req.body.postId);
 
   await postModel.deleteOne({ _id: docId });
-  return res.redirect(`/facts`);
+  return res.redirect(`/fact`);
 });
 
 //<----- Search Bar ----->//
@@ -149,7 +146,7 @@ app.post("/searchBar", async (req, res) => {
   searchReturn = await postModel.find({ [searchField]: searchValue });
 
   console.log("REF: searchbar post:", searchReturn);
-  res.redirect("/searchReturn");
+  res.redirect("/searchPage");
 });
 
 //<----- Search return ----->//
@@ -165,7 +162,7 @@ app.get("/searchReturn", async (req, res) => {
 });
 
 // Catchall to send back to index.html
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.resolve("./client/public/index.html"));
 });
 
