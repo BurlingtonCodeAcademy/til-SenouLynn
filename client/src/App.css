@@ -53,6 +53,8 @@ hr {
 }
 
 #home-form {
+
+  max-width: 1000px;
   display: flex;
   width: 50vw;
 }
@@ -254,6 +256,7 @@ hr {
 
 /* Search */
 #search-posts {
+  max-width: 1000px;
   width: 80vw;
 
   color: #5d576bff;
@@ -289,6 +292,7 @@ hr {
 }
 
 .searchRes{
+  max-width: 1200px;
   color: #5d576bff;
   border: 1px solid #e8cee4ff;
   border-radius: 5px;
