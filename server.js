@@ -23,9 +23,9 @@ app.use(express.static(staticDir));
 const mongoose = require("mongoose");
 
 //Connect to specific database called 'til'
-//"mongodb://localhost:27017/til"
+//"mongodb://localhost:27017/til" 
 //
-mongoose.connect(herokuConnectVar , {
+mongoose.connect(herokuConnectVar, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
