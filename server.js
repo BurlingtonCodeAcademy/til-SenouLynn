@@ -149,7 +149,7 @@ app.post("/searchBar", async (req, res) => {
   searchReturn = await postModel.find({ [searchField]: searchValue });
 
   console.log("REF: searchbar post:", searchReturn);
-  res.redirect("/searchRes");
+  res.redirect("/searchReturn");
 });
 
 //<----- Search return ----->//
