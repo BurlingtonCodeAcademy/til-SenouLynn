@@ -11,7 +11,7 @@ export default function Posts() {
     //<----- Importing All docs from dB ----->//
     useEffect(() => {
         if (stopLoop) {
-            fetch('/facts')
+            fetch('/fact')
                 .then((res) => res.json())
                 .then((list) => {
                     console.log(list)

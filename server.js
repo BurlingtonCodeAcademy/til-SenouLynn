@@ -16,9 +16,6 @@ app.listen(port, () => {
 //USE THIS WHEN DEPLOYING
 const staticDir = path.resolve("./client/build");
 
-//Connection through APP
-// const AtlasURL = `mongodb+srv://senoulynn:${ATLASPASS}@cluster0.3sgwu.mongodb.net/til?retryWrites=true&w=majority`
-
 let herokuConnectVar = process.env.MONGODB
 
 app.use(express.static(staticDir));
@@ -55,14 +52,14 @@ const postModel = mongoose.model("posts", postSchema);
 
 //<----- Reading database => Fetch all for /facts page ----->//
 
-app.get("/facts", async (req, res) => {
+app.get("/fact", async (req, res) => {
   const allPosts = await postModel.find({});
   res.send(allPosts);
 });
 
 //<----- Reading database and finding single post by id ----->//
 
-app.get("/facts/:objectId", async (req, res) => {
+app.get("/fact/:objectId", async (req, res) => {
   let postId = req.params.objectId;
   console.log("REF: postId ", postId);
   const singlePost = await postModel.findById(postId);
@@ -120,7 +117,7 @@ app.post("/form-update", async (req, res) => {
         return res.status(500).send({ error: err });
       } else {
         console.log("Successful Update");
-        return res.redirect(`/facts`);
+        return res.redirect(`/fact`);
       }
     }
   );
@@ -132,7 +129,7 @@ app.post("/post-delete", async (req, res) => {
   let docId = new ObjectId(req.body.postId);
 
   await postModel.deleteOne({ _id: docId });
-  return res.redirect(`/facts`);
+  return res.redirect(`/fact`);
 });
 
 //<----- Search Bar ----->//

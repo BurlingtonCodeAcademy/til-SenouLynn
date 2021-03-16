@@ -17,7 +17,7 @@ export default function Post(props) {
     console.log("REF: React match.params: ", props.match.params.id)
     useEffect(() => {
         if (stopLoop) {
-            fetch(`/facts/${props.match.params.id}`)
+            fetch(`/fact/${props.match.params.id}`)
                 .then((res) => res.json())
                 .then((list) => {
                     console.log(list)
