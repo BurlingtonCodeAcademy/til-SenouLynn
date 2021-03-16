@@ -9,6 +9,8 @@
 --pink-lace: #fde2ffff;
  */
 
+
+
 /* Global Edits */
 * {
   margin: 0;
@@ -205,7 +207,7 @@ hr {
 /* All Posts Page */
 
 #all-posts {
-  max-width: 1200px;
+  max-width: 1000px;
   width: 80vw;
 
   display: flex;
@@ -303,4 +305,27 @@ hr {
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.06);
 
   flex-basis: auto;
+}
+
+ /*Media Qurries*/
+
+ @media (max-width: 782px) {
+
+
+  
+  #all-posts > div {
+    max-width: 1200px;
+    color: #5d576bff;
+    border: 1px solid #e8cee4ff;
+    border-radius: 5px;
+  
+    padding: 1rem;
+    margin-top: 1rem;
+  
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.06);
+    width: 100%;
+
+    flex-basis: auto;
+  }
+  
 }
