@@ -49,6 +49,7 @@ export default function Edit(props) {
 
                 <div className="form-sub-container">
                     <input type="date" id="date" name="date" placeholder={info.date}></input>
+                    <input type="time" id="time" name="time"></input>
                     <input type="text" className="keyWords" name="keyWords" placeholder={`Keywords: ${info.keyWords}`}></input>
                 </div>
 

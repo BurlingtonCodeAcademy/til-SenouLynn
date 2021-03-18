@@ -55,6 +55,7 @@ const postSchema = new mongoose.Schema({
   author: String,
   postTitle: String,
   date: Date,
+  time: String,
   postContent: String,
   keyWords: Array,
 });
@@ -90,7 +91,7 @@ app.post("/form-post", async (req, res) => {
       author: req.body.author,
       postTitle: req.body.postTitle,
       date: req.body.date,
-
+      time: `${req.body.time}`,
       postContent: req.body.content,
       keyWords: req.body.keyWords.split(" "),
     });

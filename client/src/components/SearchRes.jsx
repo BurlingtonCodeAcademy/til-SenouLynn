@@ -45,12 +45,12 @@ export default function SearchRes() {
                             let year;
                             let month;
                             let day;
-                            let time;
+                            let time = obj.time.slice(1, 6)
                             if (obj.date) {
                                 year = obj.date.slice(0, 4)
                                 month = obj.date.slice(5, 7)
                                 day = obj.date.slice(8, 10)
-                                time = obj.date.slice(11,16)
+    
                                 console.log(year, month, day)
                             }
 
