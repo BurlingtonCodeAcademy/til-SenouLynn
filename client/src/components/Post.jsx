@@ -49,15 +49,17 @@ export default function Post(props) {
     let year;
     let month;
     let day;
-    let time = importAll.time.slice(1, 6)
+    let time;
+    // let 
     if (importAll.date) {
         console.log(importAll.date)
         year = importAll.date.slice(0, 4)
         month = importAll.date.slice(5, 7)
         day = importAll.date.slice(8, 10)
-        
-        console.log(year, month, day)
+        time = importAll.time.slice(1, 6)
+
     }
+
 
     return (
         <div>
