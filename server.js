@@ -10,12 +10,24 @@ app.listen(port, () => {
   console.log("TIL listening on port: ", port);
 });
 
-// //Static Directory
-// const staticDir = path.resolve("./client/public");
 
-//USE THIS WHEN DEPLOYING
-const staticDir = path.resolve("./client/build");
-let herokuConnectVar = process.env.MONGODB
+//This sets up the deploy vs local staticDir -> looks to whether or not the env file exists
+//MONGODBd variable is stored on the heroku hiddenVars
+let staticDir;
+let herokuConnectVar;
+
+if (process.env.MONGODB){
+  //USE THIS WHEN DEPLOYING
+staticDir = path.resolve("./client/build");
+herokuConnectVar = process.env.MONGODB
+
+} else {
+  // //Static Directory
+staticDir = path.resolve("./client/public");
+herokuConnectVar = "mongodb://localhost:27017/til"
+
+}
+
 
 app.use(express.static(staticDir));
 
@@ -23,14 +35,15 @@ app.use(express.static(staticDir));
 const mongoose = require("mongoose");
 
 //Connect to specific database called 'til'
-//"mongodb://localhost:27017/til" 
+//"mongodb://localhost:27017/til"
 //
-mongoose.connect(herokuConnectVar, {
+mongoose.connect( herokuConnectVar, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
 });
 const ObjectId = require("mongodb").ObjectId;
+const { timeStamp, time } = require("console");
 //REF: to til database
 const tilDB = mongoose.connection;
 
@@ -77,6 +90,7 @@ app.post("/form-post", async (req, res) => {
       author: req.body.author,
       postTitle: req.body.postTitle,
       date: req.body.date,
+
       postContent: req.body.content,
       keyWords: req.body.keyWords.split(" "),
     });
@@ -109,6 +123,7 @@ app.post("/form-update", async (req, res) => {
       author: updateForm.author,
       postTitle: updateForm.postTitle,
       date: updateForm.date,
+
       postContent: updateForm.postContent,
       keyWords: updateForm.keyWords.split(" "),
     },
@@ -145,8 +160,8 @@ app.post("/searchBar", async (req, res) => {
 
   searchReturn = await postModel.find({ [searchField]: searchValue });
 
-  console.log("REF: searchbar post:", searchReturn);
   res.redirect("/searchPage");
+  console.log("REF: searchbar post:", searchReturn);
 });
 
 //<----- Search return ----->//
@@ -162,10 +177,12 @@ app.get("/searchReturn", async (req, res) => {
 });
 
 // Catchall to send back to index.html
-app.get("/*", (req, res) => {
-  res.sendFile(path.resolve("./client/public/index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(staticDir + "/index.html");
 });
 
 //To referrence .env file to username and password info
 // const password = process.env.PASSWORD
 //const user = process.env.USER
+
+///Process.env switch to enable pdev/

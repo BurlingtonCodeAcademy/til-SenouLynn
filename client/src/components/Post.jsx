@@ -49,10 +49,13 @@ export default function Post(props) {
     let year;
     let month;
     let day;
+    let time;
     if (importAll.date) {
+        console.log(importAll.date)
         year = importAll.date.slice(0, 4)
         month = importAll.date.slice(5, 7)
         day = importAll.date.slice(8, 10)
+        time = importAll.date.slice(11, 16)
         console.log(year, month, day)
     }
 
@@ -64,7 +67,7 @@ export default function Post(props) {
                 <hr></hr>
                 <div>{importAll.postContent}</div>
                 <hr></hr>
-                <div>Posted on: {month}/{day}/{year}</div>
+                <div>Posted on: {month}/{day}/{year} at {time}</div>
                 {editDiv}
             </div>
 

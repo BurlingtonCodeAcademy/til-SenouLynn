@@ -13,7 +13,8 @@ export default function Home() {
                     <textarea type="textarea" id="content" name="content" placeholder="Add the content of your post here..." ></textarea>
                 </div>
                 <div className="form-sub-container">
-                    <input type="date" id="date" name="date"></input>
+                    <input type="date" id="datetime" name="date" value={ new Date().toISOString().substr(0, 10)}></input>
+                    {/* <input type="time" id="time" name="time"></input> */}
                     <input type="text" id="keyWords" name="keyWords" placeholder="Type some key words here, separated by spaces"></input>
                 </div>
                 <div className="form-sub-container center">

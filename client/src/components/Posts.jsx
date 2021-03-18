@@ -29,18 +29,21 @@ export default function Posts() {
             {importAll.map((obj) => {
                 if (importAll !== []) {
                     count++
-                    console.log(count)
+
                     let linkVar = `/facts/${obj._id}`
 
                     //<----- Data Sanitization ----->//
                     let year;
                     let month;
                     let day;
+                    let time;
                     if (obj.date) {
                         year = obj.date.slice(0, 4)
                         month = obj.date.slice(5, 7)
                         day = obj.date.slice(8, 10)
-                        console.log(year, month, day)
+                        time = obj.date.slice(11, 16)
+
+
                     }
                     return (
 
@@ -51,7 +54,7 @@ export default function Posts() {
                             <h5>Today I learned:</h5>
                             <div>{obj.postContent}</div>
                             <hr></hr>
-                            <div>Posted on: {month}/{day}/{year}</div>
+                            <div>Posted on: {month}/{day}/{year} at {time}</div>
                             <div className="keywords" >{obj.keyWords.map((keyWords) => {
                                 return (
                                     <form method="POST" action="/searchBar">
